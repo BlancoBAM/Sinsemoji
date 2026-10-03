@@ -1,0 +1,9 @@
+# Build outputs
+/dist/
+/packaging/deb_root/
+*.deb
+*.rpm
+*.tar.gz
+*.tar.xz
+*~
+.DS_Store

@@ -1,0 +1,16 @@
+# Maintainer: Lilith Linux Core Team <dev@lilith.org>
+pkgname=simplemoji
+pkgver=1.2.5
+pkgrel=1
+pkgdesc="Fast emoji picker written in Rust (Dark Black & #a832a6 Theme)"
+arch=('x86_64')
+url="https://github.com/SergioRibera/Simplemoji"
+license=('MIT')
+depends=('glibc')
+optdepends=('wl-clipboard: clipboard support under Wayland'
+            'xclip: clipboard support under X11')
+
+package() {
+    cd "$startdir/../.."
+    make install DESTDIR="$pkgdir" PREFIX="/usr"
+}

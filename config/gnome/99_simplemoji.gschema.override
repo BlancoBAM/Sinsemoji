@@ -1,0 +1,11 @@
+# GNOME GSettings / dconf schema override for distros shipping GNOME Shell
+# Place in /usr/share/glib-2.0/schemas/99_simplemoji.gschema.override and run:
+# glib-compile-schemas /usr/share/glib-2.0/schemas/
+
+[org.gnome.settings-daemon.plugins.media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom-simplemoji/']
+
+[org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom-simplemoji/]
+name='Simplemoji Emoji Picker'
+command='/usr/bin/simplemoji-picker'
+binding='<Ctrl>e'

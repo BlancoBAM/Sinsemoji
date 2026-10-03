@@ -1,0 +1,23 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Simplemoji
+GenericName=Emoji Picker
+Comment=Fast emoji picker written in Rust (Dark Black & #a832a6 Purple)
+Exec=simplemoji-picker %U
+Icon=simplemoji
+Terminal=false
+Categories=Utility;Accessories;
+Keywords=emoji;picker;emoticon;symbol;unicode;
+StartupNotify=true
+StartupWMClass=simplemoji
+MimeType=
+Actions=DefaultLaunch;RawLaunch;
+
+[Desktop Action DefaultLaunch]
+Name=Open Themed Picker
+Exec=simplemoji-picker
+
+[Desktop Action RawLaunch]
+Name=Open Default Picker
+Exec=simplemoji

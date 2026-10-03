@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# Simplemoji Launcher Wrapper
+# Custom Distro Profile:
+#   Background: Dark Black (#000000)
+#   Primary/Accent: Magenta/Purple (#a832a6)
+# ==============================================================================
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+if [ -n "${SIMPLEMOJI_BIN:-}" ] && [ -x "$SIMPLEMOJI_BIN" ]; then
+    EXEC_BIN="$SIMPLEMOJI_BIN"
+elif [ -x "$SCRIPT_DIR/simplemoji" ]; then
+    EXEC_BIN="$SCRIPT_DIR/simplemoji"
+elif [ -x "/usr/bin/simplemoji" ]; then
+    EXEC_BIN="/usr/bin/simplemoji"
+elif [ -x "/usr/local/bin/simplemoji" ]; then
+    EXEC_BIN="/usr/local/bin/simplemoji"
+elif command -v simplemoji >/dev/null 2>&1; then
+    EXEC_BIN="$(command -v simplemoji)"
+elif [ -x "$HOME/.local/bin/simplemoji" ]; then
+    EXEC_BIN="$HOME/.local/bin/simplemoji"
+elif [ -x "$HOME/.cargo/bin/simplemoji" ]; then
+    EXEC_BIN="$HOME/.cargo/bin/simplemoji"
+else
+    echo "Error: simplemoji binary not found." >&2
+    exit 1
+fi
+
+exec "$EXEC_BIN" -b "#000000" -m "#a832a6" "$@"

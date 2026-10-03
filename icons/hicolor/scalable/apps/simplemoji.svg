@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 512 512">
+<defs>
+<linearGradient id="linear-pattern-0" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="512" y2="512">
+<stop offset="0" stop-color="rgb(7%, 5%, 9%)" stop-opacity="1"/>
+<stop offset="1" stop-color="rgb(1%, 1%, 2%)" stop-opacity="1"/>
+</linearGradient>
+<linearGradient id="linear-pattern-1" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="512" y2="512">
+<stop offset="0" stop-color="rgb(75%, 25%, 75%)" stop-opacity="0.9"/>
+<stop offset="0.5" stop-color="rgb(65.8%, 19.6%, 65.1%)" stop-opacity="0.8"/>
+<stop offset="1" stop-color="rgb(35%, 5%, 40%)" stop-opacity="0.6"/>
+</linearGradient>
+<radialGradient id="radial-pattern-0" gradientUnits="userSpaceOnUse" cx="256" cy="256" fx="256" fy="256" r="210">
+<stop offset="0.47619" stop-color="rgb(65.8%, 19.6%, 65.1%)" stop-opacity="0.4"/>
+<stop offset="1" stop-color="rgb(65.8%, 19.6%, 65.1%)" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="radial-pattern-1" gradientUnits="userSpaceOnUse" cx="256" cy="256" fx="199.384615" fy="187.076923" r="160">
+<stop offset="0.1875" stop-color="rgb(88%, 42%, 90%)" stop-opacity="1"/>
+<stop offset="0.553125" stop-color="rgb(65.8%, 19.6%, 65.1%)" stop-opacity="1"/>
+<stop offset="1" stop-color="rgb(38%, 8%, 42%)" stop-opacity="1"/>
+</radialGradient>
+</defs>
+<path fill-rule="nonzero" fill="url(#linear-pattern-0)" stroke-width="10" stroke-linecap="butt" stroke-linejoin="miter" stroke="url(#linear-pattern-1)" stroke-miterlimit="10" d="M 392 20 C 447.226562 20 492 64.773438 492 120 L 492 392 C 492 447.226562 447.226562 492 392 492 L 120 492 C 64.773438 492 20 447.226562 20 392 L 20 120 C 20 64.773438 64.773438 20 120 20 Z M 392 20 "/>
+<path fill-rule="nonzero" fill="url(#radial-pattern-0)" d="M 466 256 C 466 371.980469 371.980469 466 256 466 C 140.019531 466 46 371.980469 46 256 C 46 140.019531 140.019531 46 256 46 C 371.980469 46 466 140.019531 466 256 "/>
+<path fill-rule="nonzero" fill="url(#radial-pattern-1)" stroke-width="4" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(100%, 75%, 100%)" stroke-opacity="0.35" stroke-miterlimit="10" d="M 406 256 C 406 338.84375 338.84375 406 256 406 C 173.15625 406 106 338.84375 106 256 C 106 173.15625 173.15625 106 256 106 C 338.84375 106 406 173.15625 406 256 "/>
+<path fill="none" stroke-width="14" stroke-linecap="round" stroke-linejoin="miter" stroke="rgb(4%, 2%, 5%)" stroke-opacity="1" stroke-miterlimit="10" d="M 181.832031 218.195312 C 186.273438 209.484375 195.222656 204 205 204 C 214.777344 204 223.726562 209.484375 228.167969 218.195312 "/>
+<path fill="none" stroke-width="14" stroke-linecap="round" stroke-linejoin="miter" stroke="rgb(4%, 2%, 5%)" stroke-opacity="1" stroke-miterlimit="10" d="M 283.832031 218.195312 C 288.273438 209.484375 297.222656 204 307 204 C 316.777344 204 325.726562 209.484375 330.167969 218.195312 "/>
+<path fill="none" stroke-width="16" stroke-linecap="round" stroke-linejoin="miter" stroke="rgb(4%, 2%, 5%)" stroke-opacity="1" stroke-miterlimit="10" d="M 308.394531 308.34375 C 295.476562 323.960938 276.265625 333 256 333 C 235.734375 333 216.523438 323.960938 203.605469 308.34375 "/>
+<path fill-rule="nonzero" fill="rgb(100%, 35%, 65%)" fill-opacity="0.85" d="M 304.082031 313.082031 C 277.527344 339.640625 234.472656 339.640625 207.917969 313.082031 Z M 304.082031 313.082031 "/>
+<path fill-rule="nonzero" fill="rgb(100%, 60%, 85%)" fill-opacity="0.45" d="M 192 275 C 192 286.046875 183.046875 295 172 295 C 160.953125 295 152 286.046875 152 275 C 152 263.953125 160.953125 255 172 255 C 183.046875 255 192 263.953125 192 275 "/>
+<path fill-rule="nonzero" fill="rgb(100%, 60%, 85%)" fill-opacity="0.45" d="M 360 275 C 360 286.046875 351.046875 295 340 295 C 328.953125 295 320 286.046875 320 275 C 320 263.953125 328.953125 255 340 255 C 351.046875 255 360 263.953125 360 275 "/>
+<path fill-rule="nonzero" fill="rgb(100%, 95%, 100%)" fill-opacity="0.95" d="M 442 110 L 409.898438 119.898438 L 400 152 L 390.101562 119.898438 L 358 110 L 390.101562 100.101562 L 400 68 L 409.898438 100.101562 Z M 442 110 "/>
+<path fill-rule="nonzero" fill="rgb(90%, 70%, 100%)" fill-opacity="0.85" d="M 468 175 L 454.242188 179.242188 L 450 193 L 445.757812 179.242188 L 432 175 L 445.757812 170.757812 L 450 157 L 454.242188 170.757812 Z M 468 175 "/>
+<path fill-rule="nonzero" fill="rgb(100%, 90%, 100%)" fill-opacity="0.9" d="M 133 395 L 111.363281 401.363281 L 105 423 L 98.636719 401.363281 L 77 395 L 98.636719 388.636719 L 105 367 L 111.363281 388.636719 Z M 133 395 "/>
+</svg>

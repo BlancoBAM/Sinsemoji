@@ -1,0 +1,7 @@
+// COSMIC Desktop System Default Shortcuts integration
+// Append to or merge into:
+//   /usr/share/cosmic/com.system76.CosmicSettings.Shortcuts/v1/defaults
+// or place in /etc/cosmic/com.system76.CosmicSettings.Shortcuts/v1/custom
+
+    (modifiers: [Ctrl], key: "e"): Spawn("simplemoji-picker"),
+    (modifiers: [Alt], key: "e"): Spawn("simplemoji-picker"),

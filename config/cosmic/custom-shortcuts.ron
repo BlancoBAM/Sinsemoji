@@ -1,0 +1,22 @@
+// COSMIC Desktop Custom Shortcut snippet
+// Install location for user profile:
+//   ~/.config/cosmic/com.system76.CosmicSettings.Shortcuts/v1/custom
+// Or distro default user skeleton:
+//   /etc/skel/.config/cosmic/com.system76.CosmicSettings.Shortcuts/v1/custom
+
+{
+    (
+        modifiers: [
+            Ctrl,
+        ],
+        key: "e",
+        description: Some("Simplemoji Emoji Picker"),
+    ): Spawn("simplemoji-picker"),
+    (
+        modifiers: [
+            Alt,
+        ],
+        key: "e",
+        description: Some("Simplemoji Emoji Picker (Alt fallback)"),
+    ): Spawn("simplemoji-picker"),
+}
