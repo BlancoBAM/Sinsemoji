@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Simplemoji Universal Installer Script
+# Sinsemoji Universal Installer Script (Lilith Linux Distro Packaging)
+#
+# Upstream Application: Simplemoji by Sergio Ribera
+# (https://github.com/SergioRibera/Simplemoji)
+#
 # Supports:
 #   1. System-wide install (requires root / sudo): installs to /usr or /usr/local
 #   2. User-local install (no root required): installs to ~/.local
@@ -51,47 +55,45 @@ if [[ "$MODE" == "system" ]]; then
     BINDIR="$PREFIX/bin"
     DATADIR="$PREFIX/share"
     SYSCONFDIR="/etc"
-    log_step "Installing Simplemoji System-Wide to $PREFIX"
+    log_step "Installing Sinsemoji System-Wide to $PREFIX"
 else
     PREFIX="$HOME/.local"
     BINDIR="$PREFIX/bin"
     DATADIR="$PREFIX/share"
     SYSCONFDIR="$HOME/.config"
-    log_step "Installing Simplemoji for User: $USER (Prefix: $PREFIX)"
+    log_step "Installing Sinsemoji for User: $USER (Prefix: $PREFIX)"
 fi
 
 # 1. Install Binaries
 mkdir -p "$BINDIR"
 install -m 755 "$SCRIPT_DIR/bin/simplemoji" "$BINDIR/simplemoji"
-install -m 755 "$SCRIPT_DIR/bin/simplemoji-picker" "$BINDIR/simplemoji-picker"
-log_info "Installed binaries to $BINDIR"
+install -m 755 "$SCRIPT_DIR/bin/sinsemoji" "$BINDIR/sinsemoji"
+ln -sf sinsemoji "$BINDIR/sinsemoji-picker"
+log_info "Installed binaries to $BINDIR (sinsemoji, sinsemoji-picker, simplemoji)"
 
 # 2. Install Desktop Entry
 mkdir -p "$DATADIR/applications"
-install -m 644 "$SCRIPT_DIR/desktop/simplemoji.desktop" "$DATADIR/applications/simplemoji.desktop"
-log_info "Installed desktop entry to $DATADIR/applications"
+install -m 644 "$SCRIPT_DIR/desktop/sinsemoji.desktop" "$DATADIR/applications/sinsemoji.desktop"
+log_info "Installed desktop entry to $DATADIR/applications/sinsemoji.desktop"
 
 # 3. Install Icons
-mkdir -p "$DATADIR/icons/hicolor/scalable/apps"
-install -m 644 "$SCRIPT_DIR/icons/hicolor/scalable/apps/simplemoji.svg" "$DATADIR/icons/hicolor/scalable/apps/simplemoji.svg"
-
-for s in 16 24 32 48 64 128 256 512; do
-    if [ -f "$SCRIPT_DIR/icons/hicolor/${s}x${s}/apps/simplemoji.png" ]; then
+for s in 16 24 32 48 64 128 256 512 1024; do
+    if [ -f "$SCRIPT_DIR/icons/hicolor/${s}x${s}/apps/sinsemoji.png" ]; then
         mkdir -p "$DATADIR/icons/hicolor/${s}x${s}/apps"
-        install -m 644 "$SCRIPT_DIR/icons/hicolor/${s}x${s}/apps/simplemoji.png" "$DATADIR/icons/hicolor/${s}x${s}/apps/simplemoji.png"
+        install -m 644 "$SCRIPT_DIR/icons/hicolor/${s}x${s}/apps/sinsemoji.png" "$DATADIR/icons/hicolor/${s}x${s}/apps/sinsemoji.png"
     fi
 done
-log_info "Installed icons to $DATADIR/icons/hicolor"
+log_info "Installed Sinsemoji icons to $DATADIR/icons/hicolor"
 
 # 4. Configure Shortcuts
 if [[ "$MODE" == "system" ]]; then
     # System skeleton for COSMIC
     mkdir -p "$SYSCONFDIR/skel/.config/cosmic/com.system76.CosmicSettings.Shortcuts/v1"
     install -m 644 "$SCRIPT_DIR/config/cosmic/custom-shortcuts.ron" "$SYSCONFDIR/skel/.config/cosmic/com.system76.CosmicSettings.Shortcuts/v1/custom"
-    
+
     # GNOME Schema override
     if [ -d "$DATADIR/glib-2.0/schemas" ]; then
-        install -m 644 "$SCRIPT_DIR/config/gnome/99_simplemoji.gschema.override" "$DATADIR/glib-2.0/schemas/99_simplemoji.gschema.override"
+        install -m 644 "$SCRIPT_DIR/config/gnome/99_sinsemoji.gschema.override" "$DATADIR/glib-2.0/schemas/99_sinsemoji.gschema.override"
         glib-compile-schemas "$DATADIR/glib-2.0/schemas" 2>/dev/null || true
     fi
     log_info "Configured system-wide skeleton shortcuts"
@@ -104,35 +106,43 @@ else
         if [ ! -f "$CUSTOM_FILE" ]; then
             install -m 644 "$SCRIPT_DIR/config/cosmic/custom-shortcuts.ron" "$CUSTOM_FILE"
         else
-            # If custom exists, check if Simplemoji is already mapped
-            if ! grep -q "Simplemoji" "$CUSTOM_FILE" 2>/dev/null; then
-                python3 -c "
+            # Update custom shortcuts for Sinsemoji
+            python3 -c "
 with open('$CUSTOM_FILE', 'r') as f:
-    c = f.read().rstrip()
-if c.endswith('}'):
-    c = c[:-1].rstrip() + '''
+    lines = f.readlines()
+# Remove any old simplemoji entries
+new_lines = []
+skip = False
+for line in lines:
+    if 'Simplemoji' in line or 'simplemoji' in line:
+        pass
+    new_lines.append(line)
+c = ''.join(new_lines)
+if 'Sinsemoji' not in c:
+    c = c.rstrip()
+    if c.endswith('}'):
+        c = c[:-1].rstrip() + '''
     (
         modifiers: [
             Ctrl,
         ],
         key: \"e\",
-        description: Some(\"Simplemoji\"),
-    ): Spawn(\"$BINDIR/simplemoji-picker\"),
+        description: Some(\"Sinsemoji\"),
+    ): Spawn(\"sinsemoji\"),
     (
         modifiers: [
             Alt,
         ],
         key: \"e\",
-        description: Some(\"Simplemoji (Alt fallback)\"),
-    ): Spawn(\"$BINDIR/simplemoji-picker\"),
+        description: Some(\"Sinsemoji (Alt+e fallback)\"),
+    ): Spawn(\"sinsemoji\"),
 }
 '''
-    with open('$CUSTOM_FILE', 'w') as f:
-        f.write(c)
+with open('$CUSTOM_FILE', 'w') as f:
+    f.write(c)
 "
-            fi
         fi
-        log_info "Configured COSMIC desktop shortcut (Ctrl+e / Alt+e)"
+        log_info "Configured COSMIC desktop shortcuts for Sinsemoji (Ctrl+e / Alt+e)"
     fi
 fi
 
@@ -141,5 +151,5 @@ update-desktop-database "$DATADIR/applications" 2>/dev/null || true
 gtk-update-icon-cache "$DATADIR/icons/hicolor" 2>/dev/null || true
 
 log_step "Installation Complete!"
-echo "You can now launch Simplemoji with: simplemoji-picker"
-echo "Global Hotkey: Ctrl+e (or Alt+e)"
+echo "Launch command: sinsemoji"
+echo "Global Hotkey:  Ctrl+e (or Alt+e)"

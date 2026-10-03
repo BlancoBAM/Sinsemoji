@@ -1,0 +1,11 @@
+# GNOME GSettings / dconf schema override for Lilith Linux distros shipping GNOME Shell
+# Place in /usr/share/glib-2.0/schemas/99_sinsemoji.gschema.override and run:
+# glib-compile-schemas /usr/share/glib-2.0/schemas/
+
+[org.gnome.settings-daemon.plugins.media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom-sinsemoji/']
+
+[org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom-sinsemoji/]
+name='Sinsemoji'
+command='/usr/bin/sinsemoji'
+binding='<Ctrl>e'

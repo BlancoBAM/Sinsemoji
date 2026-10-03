@@ -1,14 +1,18 @@
 # Maintainer: Lilith Linux Core Team <dev@lilith.org>
-pkgname=simplemoji
+# Upstream Application: Simplemoji by Sergio Ribera (https://github.com/SergioRibera/Simplemoji)
+
+pkgname=sinsemoji
 pkgver=1.2.5
 pkgrel=1
-pkgdesc="Fast emoji picker written in Rust (Dark Black & #a832a6 Theme)"
+pkgdesc="Fast emoji picker for Lilith Linux (preconfigured Simplemoji upstream packaging)"
 arch=('x86_64')
 url="https://github.com/SergioRibera/Simplemoji"
 license=('MIT')
 depends=('glibc')
 optdepends=('wl-clipboard: clipboard support under Wayland'
             'xclip: clipboard support under X11')
+provides=('simplemoji')
+conflicts=('simplemoji')
 
 package() {
     cd "$startdir/../.."

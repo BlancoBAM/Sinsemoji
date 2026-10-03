@@ -1,0 +1,23 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Sinsemoji
+GenericName=Emoji Picker
+Comment=Fast emoji picker for Lilith Linux (preconfigured Simplemoji upstream)
+Exec=sinsemoji %U
+Icon=sinsemoji
+Terminal=false
+Categories=Utility;Accessories;
+Keywords=emoji;picker;emoticon;symbol;unicode;sinsemoji;simplemoji;
+StartupNotify=true
+StartupWMClass=simplemoji
+MimeType=
+Actions=DefaultLaunch;RawLaunch;
+
+[Desktop Action DefaultLaunch]
+Name=Open Sinsemoji (Lilith Theme)
+Exec=sinsemoji
+
+[Desktop Action RawLaunch]
+Name=Open Simplemoji (Default Theme)
+Exec=simplemoji

@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Simplemoji Launcher Wrapper
-# Custom Distro Profile:
-#   Background: Dark Black (#000000)
-#   Primary/Accent: Magenta/Purple (#a832a6)
+# Sinsemoji Launcher — Lilith Linux Distro Edition
+#
+# Upstream Application: Simplemoji by Sergio Ribera
+# Website: https://github.com/SergioRibera/Simplemoji
+#
+# Pre-configured Theme Profile:
+#   Background Color: Pure Dark Black (#000000)
+#   Accent / Primary Color: Lilith Magenta/Purple (#a832a6)
 # ==============================================================================
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -23,7 +27,8 @@ elif [ -x "$HOME/.local/bin/simplemoji" ]; then
 elif [ -x "$HOME/.cargo/bin/simplemoji" ]; then
     EXEC_BIN="$HOME/.cargo/bin/simplemoji"
 else
-    echo "Error: simplemoji binary not found." >&2
+    echo "Error: simplemoji upstream binary not found." >&2
+    echo "Please ensure simplemoji is installed or available in PATH." >&2
     exit 1
 fi
 

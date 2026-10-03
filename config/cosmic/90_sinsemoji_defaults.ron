@@ -1,0 +1,7 @@
+// COSMIC Desktop System Default Shortcuts integration for Sinsemoji
+// Append to or merge into:
+//   /usr/share/cosmic/com.system76.CosmicSettings.Shortcuts/v1/defaults
+// or place in /etc/cosmic/com.system76.CosmicSettings.Shortcuts/v1/custom
+
+    (modifiers: [Ctrl], key: "e"): Spawn("sinsemoji"),
+    (modifiers: [Alt], key: "e"): Spawn("sinsemoji"),

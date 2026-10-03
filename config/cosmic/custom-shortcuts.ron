@@ -1,4 +1,4 @@
-// COSMIC Desktop Custom Shortcut snippet
+// COSMIC Desktop Custom Shortcut snippet for Sinsemoji
 // Install location for user profile:
 //   ~/.config/cosmic/com.system76.CosmicSettings.Shortcuts/v1/custom
 // Or distro default user skeleton:
@@ -10,13 +10,13 @@
             Ctrl,
         ],
         key: "e",
-        description: Some("Simplemoji Emoji Picker"),
-    ): Spawn("simplemoji-picker"),
+        description: Some("Sinsemoji"),
+    ): Spawn("sinsemoji"),
     (
         modifiers: [
             Alt,
         ],
         key: "e",
-        description: Some("Simplemoji Emoji Picker (Alt fallback)"),
-    ): Spawn("simplemoji-picker"),
+        description: Some("Sinsemoji (Alt+e fallback)"),
+    ): Spawn("sinsemoji"),
 }

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Build Debian / Ubuntu / Lilith Linux package for Simplemoji
+# Build Debian / Ubuntu / Lilith Linux package for Sinsemoji
+#
+# Upstream Application: Simplemoji by Sergio Ribera
+# Upstream Repository: https://github.com/SergioRibera/Simplemoji
 # ==============================================================================
 
 set -euo pipefail
@@ -8,7 +11,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-PKG_NAME="simplemoji"
+PKG_NAME="sinsemoji"
 PKG_VERSION="1.2.5"
 PKG_ARCH="amd64"
 DEB_NAME="${PKG_NAME}_${PKG_VERSION}_${PKG_ARCH}.deb"
@@ -16,37 +19,36 @@ DEB_NAME="${PKG_NAME}_${PKG_VERSION}_${PKG_ARCH}.deb"
 BUILD_DIR="$ROOT_DIR/packaging/deb_root"
 OUTPUT_DIR="$ROOT_DIR/dist"
 
-echo "===> Building Debian package: $DEB_NAME"
+echo "===> Building Debian package for Lilith Linux: $DEB_NAME"
 
 rm -rf "$BUILD_DIR"
 mkdir -p \
   "$BUILD_DIR/DEBIAN" \
   "$BUILD_DIR/usr/bin" \
   "$BUILD_DIR/usr/share/applications" \
-  "$BUILD_DIR/usr/share/icons/hicolor/scalable/apps" \
   "$BUILD_DIR/usr/share/glib-2.0/schemas" \
   "$BUILD_DIR/etc/skel/.config/cosmic/com.system76.CosmicSettings.Shortcuts/v1" \
   "$OUTPUT_DIR"
 
 # 1. Install Binaries
 install -m 755 "$ROOT_DIR/bin/simplemoji" "$BUILD_DIR/usr/bin/simplemoji"
-install -m 755 "$ROOT_DIR/bin/simplemoji-picker" "$BUILD_DIR/usr/bin/simplemoji-picker"
+install -m 755 "$ROOT_DIR/bin/sinsemoji" "$BUILD_DIR/usr/bin/sinsemoji"
+ln -sf sinsemoji "$BUILD_DIR/usr/bin/sinsemoji-picker"
 
 # 2. Install Desktop Entry
-install -m 644 "$ROOT_DIR/desktop/simplemoji.desktop" "$BUILD_DIR/usr/share/applications/simplemoji.desktop"
+install -m 644 "$ROOT_DIR/desktop/sinsemoji.desktop" "$BUILD_DIR/usr/share/applications/sinsemoji.desktop"
 
 # 3. Install Icons
-install -m 644 "$ROOT_DIR/icons/hicolor/scalable/apps/simplemoji.svg" "$BUILD_DIR/usr/share/icons/hicolor/scalable/apps/simplemoji.svg"
-for s in 16 24 32 48 64 128 256 512; do
-  if [ -f "$ROOT_DIR/icons/hicolor/${s}x${s}/apps/simplemoji.png" ]; then
+for s in 16 24 32 48 64 128 256 512 1024; do
+  if [ -f "$ROOT_DIR/icons/hicolor/${s}x${s}/apps/sinsemoji.png" ]; then
     mkdir -p "$BUILD_DIR/usr/share/icons/hicolor/${s}x${s}/apps"
-    install -m 644 "$ROOT_DIR/icons/hicolor/${s}x${s}/apps/simplemoji.png" "$BUILD_DIR/usr/share/icons/hicolor/${s}x${s}/apps/simplemoji.png"
+    install -m 644 "$ROOT_DIR/icons/hicolor/${s}x${s}/apps/sinsemoji.png" "$BUILD_DIR/usr/share/icons/hicolor/${s}x${s}/apps/sinsemoji.png"
   fi
 done
 
 # 4. Install Desktop Integrations
 install -m 644 "$ROOT_DIR/config/cosmic/custom-shortcuts.ron" "$BUILD_DIR/etc/skel/.config/cosmic/com.system76.CosmicSettings.Shortcuts/v1/custom"
-install -m 644 "$ROOT_DIR/config/gnome/99_simplemoji.gschema.override" "$BUILD_DIR/usr/share/glib-2.0/schemas/99_simplemoji.gschema.override"
+install -m 644 "$ROOT_DIR/config/gnome/99_sinsemoji.gschema.override" "$BUILD_DIR/usr/share/glib-2.0/schemas/99_sinsemoji.gschema.override"
 
 # 5. Control File
 cat > "$BUILD_DIR/DEBIAN/control" <<EOF
@@ -58,12 +60,19 @@ Architecture: ${PKG_ARCH}
 Maintainer: Lilith Linux Core Team <dev@lilith.org>
 Depends: libc6 (>= 2.34)
 Recommends: xclip, wl-clipboard
+Provides: simplemoji
+Replaces: simplemoji
 Homepage: https://github.com/SergioRibera/Simplemoji
-Description: Fast emoji picker written in Rust with dark black and purple theme
- Simplemoji is a blazing fast emoji picker built with Slint UI and Rust.
- This package provides a preconfigured distro edition featuring a dark black
- background (#000000), purple accent (#a832a6), desktop launcher, and
- global hotkey integrations (Ctrl+e / Alt+e).
+Description: Fast emoji picker for Lilith Linux (preconfigured Simplemoji upstream)
+ Sinsemoji is a pre-packaged distribution of Simplemoji for Lilith Linux.
+ .
+ Upstream Application: Simplemoji by Sergio Ribera
+ Upstream Repository: https://github.com/SergioRibera/Simplemoji
+ .
+ This package bundles upstream Simplemoji with Lilith Linux theme presets
+ (dark black #000000 background and #a832a6 purple accent), desktop launcher
+ integration, custom sinsemoji branding artwork, and pre-wired global hotkeys
+ (Ctrl+e / Alt+e) for the COSMIC Desktop environment.
 EOF
 
 # 6. Post-install Script

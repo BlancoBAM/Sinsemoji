@@ -5,26 +5,27 @@ DATADIR ?= $(PREFIX)/share
 SYSCONFDIR ?= /etc
 
 all:
-	@echo "Simplemoji distro package."
+	@echo "Sinsemoji — Lilith Linux Distro Packaging for Simplemoji."
 	@echo "Run 'make install' (with optional DESTDIR and PREFIX) to install."
-	@echo "Run 'make deb' to build a Debian/Ubuntu package."
+	@echo "Run 'make deb' to build a Debian/Ubuntu/Lilith package."
 
 install:
 	# Install binaries
 	install -d "$(DESTDIR)$(BINDIR)"
 	install -m 755 bin/simplemoji "$(DESTDIR)$(BINDIR)/simplemoji"
-	install -m 755 bin/simplemoji-picker "$(DESTDIR)$(BINDIR)/simplemoji-picker"
+	install -m 755 bin/sinsemoji "$(DESTDIR)$(BINDIR)/sinsemoji"
+	ln -sf sinsemoji "$(DESTDIR)$(BINDIR)/sinsemoji-picker"
 
 	# Install desktop entry
 	install -d "$(DESTDIR)$(DATADIR)/applications"
-	install -m 644 desktop/simplemoji.desktop "$(DESTDIR)$(DATADIR)/applications/simplemoji.desktop"
+	install -m 644 desktop/sinsemoji.desktop "$(DESTDIR)$(DATADIR)/applications/sinsemoji.desktop"
 
 	# Install icons
-	install -d "$(DESTDIR)$(DATADIR)/icons/hicolor/scalable/apps"
-	install -m 644 icons/hicolor/scalable/apps/simplemoji.svg "$(DESTDIR)$(DATADIR)/icons/hicolor/scalable/apps/simplemoji.svg"
-	for s in 16 24 32 48 64 128 256 512; do \
-		install -d "$(DESTDIR)$(DATADIR)/icons/hicolor/$${s}x$${s}/apps"; \
-		install -m 644 icons/hicolor/$${s}x$${s}/apps/simplemoji.png "$(DESTDIR)$(DATADIR)/icons/hicolor/$${s}x$${s}/apps/simplemoji.png"; \
+	for s in 16 24 32 48 64 128 256 512 1024; do \
+		if [ -f "icons/hicolor/$${s}x$${s}/apps/sinsemoji.png" ]; then \
+			install -d "$(DESTDIR)$(DATADIR)/icons/hicolor/$${s}x$${s}/apps"; \
+			install -m 644 "icons/hicolor/$${s}x$${s}/apps/sinsemoji.png" "$(DESTDIR)$(DATADIR)/icons/hicolor/$${s}x$${s}/apps/sinsemoji.png"; \
+		fi \
 	done
 
 	# Install COSMIC desktop configuration
@@ -33,17 +34,17 @@ install:
 
 	# Install GNOME schema override
 	install -d "$(DESTDIR)$(DATADIR)/glib-2.0/schemas"
-	install -m 644 config/gnome/99_simplemoji.gschema.override "$(DESTDIR)$(DATADIR)/glib-2.0/schemas/99_simplemoji.gschema.override"
+	install -m 644 config/gnome/99_sinsemoji.gschema.override "$(DESTDIR)$(DATADIR)/glib-2.0/schemas/99_sinsemoji.gschema.override"
 
 uninstall:
+	rm -f "$(DESTDIR)$(BINDIR)/sinsemoji"
+	rm -f "$(DESTDIR)$(BINDIR)/sinsemoji-picker"
 	rm -f "$(DESTDIR)$(BINDIR)/simplemoji"
-	rm -f "$(DESTDIR)$(BINDIR)/simplemoji-picker"
-	rm -f "$(DESTDIR)$(DATADIR)/applications/simplemoji.desktop"
-	rm -f "$(DESTDIR)$(DATADIR)/icons/hicolor/scalable/apps/simplemoji.svg"
-	for s in 16 24 32 48 64 128 256 512; do \
-		rm -f "$(DESTDIR)$(DATADIR)/icons/hicolor/$${s}x$${s}/apps/simplemoji.png"; \
+	rm -f "$(DESTDIR)$(DATADIR)/applications/sinsemoji.desktop"
+	for s in 16 24 32 48 64 128 256 512 1024; do \
+		rm -f "$(DESTDIR)$(DATADIR)/icons/hicolor/$${s}x$${s}/apps/sinsemoji.png"; \
 	done
-	rm -f "$(DESTDIR)$(DATADIR)/glib-2.0/schemas/99_simplemoji.gschema.override"
+	rm -f "$(DESTDIR)$(DATADIR)/glib-2.0/schemas/99_sinsemoji.gschema.override"
 
 icons:
 	python3 scripts/generate_icons.py
