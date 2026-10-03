@@ -156,23 +156,15 @@ Snippets for **GNOME**, **Hyprland**, **Sway**, **i3**, and **sxhkd** are provid
 
 ---
 
-## 🛠 Building for Linux Distributions
+## 🛠 Packaging for Lilith Linux (Debian / Ubuntu)
 
-### Debian / Ubuntu / Lilith Linux
+Lilith Linux is Debian / Ubuntu based. The native distribution package format is `.deb`:
+
 ```bash
+# Build the native .deb package:
 ./packaging/build_deb.sh
+
 # Output: dist/sinsemoji_1.2.5_amd64.deb
-```
-
-### Arch Linux
-```bash
-cd packaging/arch
-makepkg -si
-```
-
-### Fedora / RHEL
-```bash
-rpmbuild -ba packaging/fedora/sinsemoji.spec
 ```
 
 ---
