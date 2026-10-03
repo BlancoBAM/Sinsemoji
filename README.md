@@ -174,5 +174,5 @@ Lilith Linux is Debian / Ubuntu based. The native distribution package format is
 * **Core Application & Slint UI:** Created by **Sergio Ribera** ([@SergioRibera](https://github.com/SergioRibera)).  
   Upstream project repository: [https://github.com/SergioRibera/Simplemoji](https://github.com/SergioRibera/Simplemoji)  
   Licensed under the MIT License.
-* **Packaging & Lilith Linux Integration:** Maintained by the **Lilith Linux Core Team**.  
+* **Packaging & Lilith Linux Integration:** Maintained by the **BlancoBAM**.  
   Licensed under the [MIT License](LICENSE).
