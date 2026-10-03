@@ -1,4 +1,4 @@
-# Sinsemoji (Lilith Linux Edition)
+# Sinsemoji 
 
 <p align="center">
   <img src="assets/sinsemoji.png" alt="Sinsemoji Logo" width="160" height="160" />
@@ -165,23 +165,6 @@ Lilith Linux is Debian / Ubuntu based. The native distribution package format is
 ./packaging/build_deb.sh
 
 # Output: dist/sinsemoji_1.2.5_amd64.deb
-```
-
----
-
-## 📤 Publishing to Remote GitHub
-
-This directory is an independent, ready-to-push Git repository on the `main` branch. To link it to your remote GitHub account:
-
-```bash
-cd /home/s8n/Sinsemoji
-
-# 1. Set your remote repository URL:
-git remote add origin git@github.com:<YOUR_USERNAME>/Sinsemoji.git
-# (or with HTTPS: https://github.com/<YOUR_USERNAME>/Sinsemoji.git)
-
-# 2. Push to GitHub:
-git push -u origin main
 ```
 
 ---
