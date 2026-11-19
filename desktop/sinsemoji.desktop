@@ -19,5 +19,5 @@ Name=Open Sinsemoji (Lilith Theme)
 Exec=sinsemoji
 
 [Desktop Action RawLaunch]
-Name=Open Simplemoji (Default Theme)
+Name=Open Sinsemoji (Default Theme)
 Exec=simplemoji

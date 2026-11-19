@@ -16,8 +16,9 @@ install:
 	install -m 755 bin/sinsemoji "$(DESTDIR)$(BINDIR)/sinsemoji"
 	ln -sf sinsemoji "$(DESTDIR)$(BINDIR)/sinsemoji-picker"
 
-	# Install desktop entry
+	# Install desktop entry (single Sinsemoji entry; remove legacy simplemoji launcher)
 	install -d "$(DESTDIR)$(DATADIR)/applications"
+	rm -f "$(DESTDIR)$(DATADIR)/applications/simplemoji.desktop"
 	install -m 644 desktop/sinsemoji.desktop "$(DESTDIR)$(DATADIR)/applications/sinsemoji.desktop"
 
 	# Install icons
@@ -41,6 +42,7 @@ uninstall:
 	rm -f "$(DESTDIR)$(BINDIR)/sinsemoji-picker"
 	rm -f "$(DESTDIR)$(BINDIR)/simplemoji"
 	rm -f "$(DESTDIR)$(DATADIR)/applications/sinsemoji.desktop"
+	rm -f "$(DESTDIR)$(DATADIR)/applications/simplemoji.desktop"
 	for s in 16 24 32 48 64 128 256 512 1024; do \
 		rm -f "$(DESTDIR)$(DATADIR)/icons/hicolor/$${s}x$${s}/apps/sinsemoji.png"; \
 	done

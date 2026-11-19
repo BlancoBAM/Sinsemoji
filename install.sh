@@ -73,6 +73,8 @@ log_info "Installed binaries to $BINDIR (sinsemoji, sinsemoji-picker, simplemoji
 
 # 2. Install Desktop Entry
 mkdir -p "$DATADIR/applications"
+# Replace any legacy simplemoji launcher with a single Sinsemoji entry
+rm -f "$DATADIR/applications/simplemoji.desktop"
 install -m 644 "$SCRIPT_DIR/desktop/sinsemoji.desktop" "$DATADIR/applications/sinsemoji.desktop"
 log_info "Installed desktop entry to $DATADIR/applications/sinsemoji.desktop"
 

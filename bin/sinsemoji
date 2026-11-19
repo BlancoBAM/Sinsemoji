@@ -32,4 +32,4 @@ else
     exit 1
 fi
 
-exec "$EXEC_BIN" -b "#000000" -m "#a832a6" "$@"
+exec "$EXEC_BIN" --no-close -b "#000000" -m "#a832a6" "$@"

@@ -38,7 +38,7 @@
 | Component | Setting / Path | Description |
 | :--- | :--- | :--- |
 | **Upstream Software** | [SergioRibera/Simplemoji](https://github.com/SergioRibera/Simplemoji) | Fast emoji picker written in Rust + Slint UI |
-| **Lilith Launcher Command** | `sinsemoji` (`/usr/bin/sinsemoji`) | Automatically passes preset theme parameters |
+| **Lilith Launcher Command** | `sinsemoji` (`/usr/bin/sinsemoji`) | Automatically passes preset theme parameters (`--no-close` so the window persists until you close it, plus black background and purple accent) |
 | **Upstream Raw Binary** | `simplemoji` (`/usr/bin/simplemoji`) | Untouched binary for custom CLI flags |
 | **Background Color** | `#000000` | Pure deep dark black background |
 | **Primary / Accent Color**| `#a832a6` | Vibrant magenta / purple Lilith accent |
