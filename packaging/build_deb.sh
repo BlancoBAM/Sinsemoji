@@ -57,7 +57,7 @@ Version: ${PKG_VERSION}
 Section: utils
 Priority: optional
 Architecture: ${PKG_ARCH}
-Maintainer: Lilith Linux Core Team <dev@lilith.org>
+Maintainer: BlancoBAM <blancobam@proton.me>
 Depends: libc6 (>= 2.34)
 Recommends: xclip, wl-clipboard
 Provides: simplemoji
